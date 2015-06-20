@@ -44,3 +44,65 @@ usps.track(['EJ123456780US', '12345'], function(err, res) {
 
   console.log(util.inspect(res, {depth: null}));
 });
+
+/**
+ * VERIFY ADDRESS
+ */
+usps.verify({
+  IncludeOptionalElements: true, //flag to return Delivery Point and other optional elements in the future
+  ReturnCarrierRoute: true, //flag to return Carrier Route
+  addresses: [
+    {
+      FirmName: '',
+      Address1: '',
+      Address2: '6406 Ivy Lane',
+      City: 'Greenbelt',
+      State: 'MD',
+      Zip5: '20770',
+      Zip4: ''
+    }
+  ]
+}, function(err, res) {
+  if(err) {
+    return console.log(util.inspect(err, {depth: null}));
+  }
+
+  console.log(util.inspect(res, {depth: null}));
+});
+
+/**
+ * ZIPCODE LOOKUP
+ */
+usps.zipCodeLookup({
+  addresses: [
+    {
+      FirmName: '',
+      Address1: '',
+      Address2: '6406 Ivy Lane',
+      City: 'Greenbelt',
+      State: 'MD'
+    }
+  ]
+}, function(err, res) {
+  if(err) {
+    return console.log(util.inspect(err, {depth: null}));
+  }
+
+  console.log(util.inspect(res, {depth: null}));
+});
+
+/**
+ * CITY/STATE LOOKUP
+ */
+usps.cityStateLookup({
+  zipCodes: [
+    {Zip5: '20770'},
+    {Zip5: '90210'}
+  ]
+}, function(err, res) {
+  if(err) {
+    return console.log(util.inspect(err, {depth: null}));
+  }
+
+  console.log(util.inspect(res, {depth: null}));
+});
