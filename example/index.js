@@ -35,6 +35,34 @@ usps.rates({
 });
 
 /**
+ * INTERNATIONAL RATES
+ */
+usps.intlRates({
+  packages: [
+    {
+      Pounds: 1,
+      Ounces: 0.5,
+      MailType: 'PACKAGE',
+      ValueOfContents: null,
+      Country: 'France',
+      Container: null,
+      Size: 'REGULAR',
+      Width: null,
+      Length: null,
+      Height: null,
+      Girth: null,
+      OriginZip: '44106'
+    }
+  ]
+}, function(err, res) {
+  if(err) {
+    return console.log(util.inspect(err, {depth: null}));
+  }
+
+  console.log(util.inspect(res, {depth: null}));
+});
+
+/**
  * TRACKING
  */
 usps.track(['EJ123456780US', '12345'], function(err, res) {
